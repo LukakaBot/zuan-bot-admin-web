@@ -8,13 +8,13 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/app/main.py"
+      "dest": "app/main.py"
     }
   ],
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/app/api/main.py"
+      "destination": "/app/api/main"
     }
   ]
 }
