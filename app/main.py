@@ -22,3 +22,7 @@ def on_startup():
 
 
 app.include_router(api_router, prefix=settings.SERVICE_API_PREFIX)
+
+
+if __name__ == "__main__":
+    uvicorn.run("app:main.app", host="0.0.0.0", port=settings.SERVICE_PORT, reload=True)
