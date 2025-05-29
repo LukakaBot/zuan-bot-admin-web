@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from app.api.endpoints import quotes
+from app.api.endpoints import quote
 
 api_router = APIRouter()
 
-api_router.include_router(quotes.router)
+api_router.include_router(quote.router)
