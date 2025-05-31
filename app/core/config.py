@@ -11,10 +11,12 @@ class Settings(BaseSettings):
 
     # 服务名称
     SERVICE_PROJECT_NAME: str
-    # 接口前缀
-    SERVICE_API_PREFIX: str
+    # 服务地址
+    SERVICE_HOST: str
     # 服务端口
     SERVICE_PORT: int
+    # 接口前缀
+    SERVICE_API_PREFIX: str
 
 
 settings = Settings()
