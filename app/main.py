@@ -5,11 +5,10 @@ from app.core.config import settings
 from app.core.database import create_db_and_tables
 import os
 
-
-title = os.environ.get("SERVICE_PROJECT_NAME", "FastAPI") or settings.SERVICE_PROJECT_NAME
-prefix = os.environ.get("SERVICE_API_PREFIX", "/api") or settings.SERVICE_API_PREFIX
-host = os.environ.get("SERVICE_HOST", "0.0.0.0") or settings.SERVICE_HOST
-port = int(os.environ.get("SERVICE_PORT", 8000)) or settings.SERVICE_PORT
+title = os.environ.get("SERVICE_PROJECT_NAME", "FastAPI")
+prefix = os.environ.get("SERVICE_API_PREFIX", "/api")
+host = os.environ.get("SERVICE_HOST", "0.0.0.0")
+port = int(os.environ.get("SERVICE_PORT", 8000))
 
 
 def generate_unique_id(route: APIRoute):
