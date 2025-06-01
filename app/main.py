@@ -8,7 +8,7 @@ import os
 title = os.environ.get("SERVICE_PROJECT_NAME", "FastAPI")
 prefix = os.environ.get("SERVICE_API_PREFIX", "/api")
 host = os.environ.get("SERVICE_HOST", "0.0.0.0")
-port = int(os.environ.get("SERVICE_PORT", 8000))
+port = int(os.environ.get("SERVICE_PORT", 10000))
 
 
 def generate_unique_id(route: APIRoute):
