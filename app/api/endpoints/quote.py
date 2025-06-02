@@ -1,8 +1,9 @@
 from fastapi import APIRouter
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, select
 from sqlalchemy import func
 from fastapi.responses import JSONResponse
 from app.core.database import SessionDep
+
 
 router = APIRouter(tags=["quote"])
 
@@ -10,17 +11,20 @@ router = APIRouter(tags=["quote"])
 class Main(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
     text: str
+    level: str
 
 
-@router.get("/")
-def getQuote(db: SessionDep):
-    quote: Main = db.query(Main).order_by(func.random()).first()
+@router.get("/quote")
+def getQuote(db: SessionDep, level: str = "min"):
+    # quote: Main = db.query(Main).order_by(func.random()).first()
+    statement = select(Main).where(Main.level == level).order_by(func.random()).limit(1)
+    quote: Main = db.exec(statement).first()
 
     if not quote:
         return JSONResponse(
             content={
                 "code": 400,
-                "message": "No quotes found!",
+                "message": "No quote found!",
                 "data": None,
             }
         )
