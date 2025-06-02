@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
 from app.api.main import api_router
-from app.core.config import settings
 from app.core.database import create_db_and_tables
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
+
 
 title = os.environ.get("SERVICE_PROJECT_NAME", "FastAPI")
 prefix = os.environ.get("SERVICE_API_PREFIX", "/api")
@@ -31,6 +32,3 @@ def on_startup():
 
 
 app.include_router(api_router, prefix=prefix)
-
-if __name__ == "__main__":
-    uvicorn.run("app:main.app", host=host, port=port, reload=True)
