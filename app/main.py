@@ -4,6 +4,7 @@ from app.api.main import api_router
 from app.core.database import create_db_and_tables
 import os
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 
 load_dotenv()
@@ -13,6 +14,13 @@ title = os.environ.get("SERVICE_PROJECT_NAME", "FastAPI")
 prefix = os.environ.get("SERVICE_API_PREFIX", "/api")
 host = os.environ.get("SERVICE_HOST", "0.0.0.0")
 port = int(os.environ.get("SERVICE_PORT", 10000))
+
+
+origins = [
+    "http://localhost",
+    "http://localhost:3301",
+    "http://192.168.1.191:3301",
+]
 
 
 def generate_unique_id(route: APIRoute):
@@ -29,6 +37,15 @@ app = FastAPI(
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 app.include_router(api_router, prefix=prefix)
