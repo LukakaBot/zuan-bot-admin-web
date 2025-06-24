@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
-from app.api.main import api_router
+from app.router.main import api_router
 from app.core.database import create_db_and_tables
 import os
 from dotenv import load_dotenv

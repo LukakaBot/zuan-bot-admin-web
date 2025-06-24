@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.api.endpoints import quote
+from app.router.api import quote
 
 api_router = APIRouter()
 
