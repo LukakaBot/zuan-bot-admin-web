@@ -4,7 +4,6 @@ from sqlalchemy import func
 from fastapi.responses import JSONResponse
 from app.core.database import SessionDep
 
-
 router = APIRouter(tags=["quote"])
 
 
@@ -16,7 +15,6 @@ class Main(SQLModel, table=True):
 
 @router.get("/quote")
 def getQuote(db: SessionDep, level: str = "min"):
-    # quote: Main = db.query(Main).order_by(func.random()).first()
     statement = select(Main).where(Main.level == level).order_by(func.random()).limit(1)
     quote: Main = db.exec(statement).first()
 
@@ -24,9 +22,9 @@ def getQuote(db: SessionDep, level: str = "min"):
         return JSONResponse(
             content={
                 "code": 400,
-                "message": "No quote found!",
+                "message": "no quote found!",
                 "data": None,
             }
         )
 
-    return JSONResponse(content={"code": 200, "message": "Success", "data": quote.text})
+    return JSONResponse(content={"code": 200, "message": "success", "data": quote.text})
