@@ -16,6 +16,7 @@ origins = [
     "http://localhost:3301",
     "http://192.168.1.191:3301",
     "https://zuan.lukaka.work/",
+    "https://zuan-bot-static-web.vercel.app/",
 ]
 
 
